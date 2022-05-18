@@ -3,7 +3,7 @@
 
 @endsection
 @section('content')
-   
+@include('administrative.includes.breadcrumb') 
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
             <h4 class="mb-3 mb-md-0">Items</h4>
@@ -26,8 +26,11 @@
                             <tr>
                                 <th> SL</th>
                                
-                                <th>Task</th>
-                                <th>status</th>
+                                <th>title</th>
+                                <th>color</th>
+                                <th>bgtext</th>
+                                <th>detail</th>
+                                <th>image</th>
                               
                                 <th class="disabled-sorting text-right">Actions</th>
                             </tr>
@@ -57,9 +60,11 @@
                 ajax: '{{route('administrative.item.data')}}',
                 columns: [
                     {data: 'id', name: 'id'},
-                    
-                    {data: 'task', name: 'task'},
-                    {data: 'status', name: 'status'},
+                    {data: 'title', name: 'title'},
+                    {data: 'color', name: 'color'},
+                    {data: 'bgtext', name: 'bgtext'},
+                    {data: 'detail', name: 'detail'},
+                    {data: 'image', name: 'image'},
                     {data: 'action', name: 'action'}
                 ]
             });

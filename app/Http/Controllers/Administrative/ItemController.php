@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administrative;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ItemStoreRequest;
 use App\Service\ItemService;
 use App\Item;
 class ItemController extends Controller
@@ -30,62 +31,25 @@ class ItemController extends Controller
 
     public function create()
     {
-        $informations = Page::all();
-        return view('administrative.downloadable_file.create', compact('informations'));
+        
+        return view('administrative.item.create');
     }
 
     public function store(ItemStoreRequest $request)
     {
-        try {
-            $Item = new  Item();
-            $Item->id = request('id');
-            $Item->title = request('title');
-            $Item->page_id = request('page_id');
-            $Item->section = request('section');
-
-            if ($request->hasfile('file_url')) {
-                $file = $request->file('file_url');
-                $extension = $file->getClientOriginalExtension(); //getting file extension
-                $filename = time() . '.' . $extension;
-                $file->move('uploads/Item/', $filename);
-                $Item->file_url = 'uploads/Item/' . $filename;
-            }
-            $Item->save();
-            return redirect()->route('administrative.downloadable_file')->with('success', 'Item Created Successfully');
-
-        } catch (exception $e) {
-            return redirect()->back()->withInput()->with('error', 'Something Wrong,Please Try Again');
-        }
+        return $this->ItemService->store($request);
     }
 
     public function edit($id)
     {
-        $downloadable_file = $this->ItemService->findbyId($id);
-        $informations = Page::all();
-        return view('administrative.downloadable_file.edit', compact('downloadable_file', 'informations'));
+        $item = $this->ItemService->findbyId($id);
+        return view('administrative.item.edit', compact('item'));
     }
 
 
     public function update($id, ItemStoreRequest $request)
     {
-        try {
-            $Item = Item::find($id);
-            $Item->title = request('title');
-            $Item->page_id = request('page_id');
-            $Item->section = request('section');
-
-            if ($request->hasfile('file_url')) {
-                $file = $request->file('file_url');
-                $extension = $file->getClientOriginalExtension(); //getting file extension
-                $filename = time() . '.' . $extension;
-                $file->move('uploads/Item/', $filename);
-                $Item->file_url = 'uploads/Item/' . $filename;
-            }
-            $Item->update();
-            return redirect()->route('administrative.downloadable_file')->with('success', 'Page Updated Successfully');
-        } catch (exception $e) {
-            return redirect()->back()->with('error', 'Something Wrong,Please Try Again');
-        }
+        return $this->ItemService->update($request, $id);
     }
 
     public function destroy($id)
