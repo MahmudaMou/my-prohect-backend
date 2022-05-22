@@ -42,7 +42,7 @@
 
                             <div class="col-md-6">
                             <div class="form-group {{ $errors->has('color') ? 'has-danger' : '' }}">
-                                    <label for="color"> Background text</label>
+                                    <label for="color"> Color</label>
                                     <input required type="text" class="form-control form-control-danger" id="color"
                                            name="color" autocomplete="off" placeholder="Title"
                                            value="{{ old('color', isset($item) ? $item->color : '') }}"
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <img src="{{ $item->image_url }}" alt="image" width="100px">
+                                <img src="{{ asset('/'.$item->image) }}" alt="image" width="100px">
                             </div>
 
                             <div class="col-md-12">
