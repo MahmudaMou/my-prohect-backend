@@ -37,7 +37,7 @@ class ItemService
                 ';
             })
             ->editColumn('image', function ($data) {
-                $content = asset('/') . $data['image'];
+                $content =  $data['image'];
                 $html = '<div class="photo">
                     <a href="' . $content . '" data-fancybox="images" data-caption="Content File">
                         <img  style="width: 80px; height:80px;" src="' . $content . '" alt="" />
