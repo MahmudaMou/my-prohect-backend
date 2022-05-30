@@ -30,6 +30,7 @@
                                 <th>color</th>
                                 <th>bgtext</th>
                                 <th>detail</th>
+                                <th>Type</th>
                                 <th>image</th>
                               
                                 <th class="disabled-sorting text-right">Actions</th>
@@ -64,6 +65,7 @@
                     {data: 'color', name: 'color'},
                     {data: 'bgtext', name: 'bgtext'},
                     {data: 'detail', name: 'detail'},
+                    {data: 'type', name: 'type'},
                     {data: 'image', name: 'image'},
                     {data: 'action', name: 'action'}
                 ]

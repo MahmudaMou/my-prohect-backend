@@ -16,9 +16,10 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('color');
+            $table->enum('color', ['red', 'green', 'yellow','blue','pink']);
             $table->string('bgtext');
             $table->string('detail');
+            $table->enum('type', ['high', 'mid', 'low']);
             $table->string('image')->nullable();
             $table->timestamps();
         });
